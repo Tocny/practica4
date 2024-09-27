@@ -102,6 +102,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
      */
     public static void main(String[] args){
         try{
+            System.setProperty("java.rmi.server.hostname", "192.168.1.19");
             LocateRegistry.createRegistry(1099);
             Naming.rebind("rmi://192.168.1.19/ImpresoraServidor", getInstancia());
             System.out.println("Servidor registrado");
