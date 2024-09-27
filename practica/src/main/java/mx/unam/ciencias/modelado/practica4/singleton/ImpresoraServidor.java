@@ -3,6 +3,8 @@ package mx.unam.ciencias.modelado.practica4.singleton;
 import mx.unam.ciencias.modelado.practica4.empresa.*;
 import mx.unam.ciencias.modelado.practica4.proxy.ImpresoraInterface;
 import java.rmi.RemoteException;
+import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -61,7 +63,6 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
         //Si se revasa el máximo, se hacen las impresiones y se hace un shut down al programa.
         if(impresiones.size() >= MAXIMO_COLA){
             realizaImpresiones();
-            System.exit(1);
         }
         
     }
@@ -92,6 +93,20 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
             Documento documento = impresiones.poll();
             System.out.println("Imprimiendo documento: " + documento.getNombreDocumento() +  " Solicitado por: " + documento.getAutor());
             System.out.println(documento.getContenido());
+        }
+    }
+
+    /**
+     * Método main de la clase, inicializa el servidor mediante rmi.
+     * @param args un arreglo de argumentos.
+     */
+    public static void main(String[] args){
+        try{
+            LocateRegistry.createRegistry(1099);
+            Naming.rebind("rmi://192.168.1.19/ImpresoraServidor", getInstancia());
+            System.out.println("Servidor registrado");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 

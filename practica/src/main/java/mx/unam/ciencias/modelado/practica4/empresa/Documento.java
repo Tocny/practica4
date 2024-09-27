@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Documento implements Serializable{
 
     /**ID de versión. */
-    private static final long serialVersionUID = 1L
+    private static final long serialVersionUID = 1L;
     /**Nombre del documento a imprimir. */
     private String nombreDocumento;
     /**Contenido del documento. */
