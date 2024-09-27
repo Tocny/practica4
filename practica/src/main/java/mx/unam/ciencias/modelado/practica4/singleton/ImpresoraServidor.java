@@ -55,7 +55,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
         if(gestionarPermisos(empleado, documento)){
             documento.setAutor(empleado.getNombre());
             impresiones.add(documento);
-            System.out.println("Solicitud recibida, se imprimirá el documento: " + documento.getNombreDocumento());
+            System.out.println("Solicitud recibida, documento: " + documento.getNombreDocumento());
         } else{
             System.out.println(empleado.getNombre() + ", usted no puede imprimir a color.");
         }
@@ -92,7 +92,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
         while(!impresiones.isEmpty()){
             Documento documento = impresiones.poll();
             System.out.println("Imprimiendo documento: " + documento.getNombreDocumento() +  " Solicitado por: " + documento.getAutor());
-            System.out.println(documento.getContenido());
+            System.out.println("\t" + documento.getContenido());
         }
     }
 

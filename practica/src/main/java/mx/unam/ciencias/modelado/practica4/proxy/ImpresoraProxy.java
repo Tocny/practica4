@@ -25,6 +25,7 @@ public class ImpresoraProxy implements ImpresoraInterface{
      * @throws RemoteException en caso de error con el servidor.
      */
     @Override public void imprimir(Empleado empleado, Documento documento) throws RemoteException{
+        System.out.println("Solicitud enviada para imprimir el documento: " + documento.getNombreDocumento());
         servidor.imprimir(empleado, documento);
     }
 
