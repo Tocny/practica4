@@ -1,4 +1,4 @@
-Práctica 3: Los Amantes de Intel.
+Práctica 4: CtOS
 ====================
 Materia: Modelado y Programación.
 
