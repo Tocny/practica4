@@ -57,7 +57,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
             impresiones.add(documento);
             System.out.println("Solicitud recibida, documento: " + documento.getNombreDocumento());
         } else{
-            System.out.println(empleado.getNombre() + ", usted no puede imprimir a color.");
+            System.out.println("Solicitud denegada para impreson de documento: " + documento.getNombreDocumento() + " [El empleado no es de mercadotecnia].");
         }
         
         //Si se revasa el máximo, se hacen las impresiones y se hace un shut down al programa.
@@ -73,7 +73,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
      * @param documento una instancia de documento.
      * @return si el documento está marcado a ser a color y el area de trabajo del empleado es Mercadotecnia tienen valores booleanos iguales.
      */
-    private boolean gestionarPermisos(Empleado empleado, Documento documento){
+    @Override public boolean gestionarPermisos(Empleado empleado, Documento documento) throws RemoteException{
         boolean esDeMercadotecnia = empleado.getArea().equals(AreaDeTrabajo.MERCADOTECNIA);
         boolean documentoAColor = documento.getEsAColor();
 

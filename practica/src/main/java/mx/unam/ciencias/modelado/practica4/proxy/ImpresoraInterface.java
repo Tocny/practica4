@@ -15,4 +15,11 @@ public interface ImpresoraInterface extends Remote{
      * @throws RemoteException en caso de errores con el server remoto.
      */
     public void imprimir(Empleado empleado, Documento documento) throws RemoteException;
+
+    /**
+     * Método que gestiona los permisos del empleado para imprimir un documento.
+     * @param empleado una instancia de empleado.
+     * @param documento una instancia de documento.
+     */
+    public boolean gestionarPermisos(Empleado empleado, Documento documento) throws RemoteException;
 }
