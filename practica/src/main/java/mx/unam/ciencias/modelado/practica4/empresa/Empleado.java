@@ -10,9 +10,14 @@ public class Empleado implements Serializable{
     /** ID de versión para la serialización. */
     private static final long serialVersionUID = 1L;
 
+    /** Cadenas que almacenan el nombre y el rfc del empleado */
     private String nombre;
     private String rfc;
+
+    /** Entero que almacena el piso en el que trabaja el empleado */
     private int piso;
+
+    /** ENUM del area de trabajo del empleado */
     private AreaDeTrabajo area;
 
     /**

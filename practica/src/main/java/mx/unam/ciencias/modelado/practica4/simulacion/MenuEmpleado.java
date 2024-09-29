@@ -5,7 +5,10 @@ import mx.unam.ciencias.modelado.practica4.common.MetodosGet;
 
 /**Clase de menu, para poder armar una instancia de Empleado con entradas del usuario. */
 public class MenuEmpleado{
+
+    /** Entero que almacena el valor del piso del empleado */
     private int piso;
+
     /**
      * Metodo que crea un documento como lo solicita el usuario
      * @return Documento solicitado

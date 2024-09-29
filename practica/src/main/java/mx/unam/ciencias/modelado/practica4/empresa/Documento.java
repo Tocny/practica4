@@ -8,8 +8,10 @@ public class Documento implements Serializable{
     /**ID de versión. */
     private static final long serialVersionUID = 1L;
 
+    /**Cadena que almacena el nombre del documento */
     private String nombreDocumento;
 
+    /**Cadena que almacena el contenido del documento */
     private String contenido;
 
     /**Booleano que indica si el documento se imprime a color */
