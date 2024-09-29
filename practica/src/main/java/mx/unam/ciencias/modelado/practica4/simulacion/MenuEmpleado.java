@@ -38,27 +38,54 @@ public class MenuEmpleado{
     }
 
     /**
-     * Metodo que pide al usuario que ingrese el area en la que trabaja y la retorna para enum, además le asigna un piso
-     * @return
-     */
-    private AreaDeTrabajo solicitaArea(){
-        int seleccion;
-        AreaDeTrabajo area;
-        seleccion = MetodosGet.getInt("Selecciona el area en la que trabaja:
-        \n1. Atencion a clientes
-        \n2. Recursos humanos
-        \n3. Contabilidad
-        \n4. Desarrollo
-        \n5. Mercadotecnia
-        \n6. Direccion", "Debe ingresar un valor del 1 al 6", 1, 6);
-        switch(seleccion){
-            case 1: area = ATENCION_A_CLIENTES; piso = 1; break;
-            case 2: area = RECURSOS_HUMANOS; piso = 2; break;
-            case 3: area = CONTABILIDAD; piso = 3; break;
-            case 4: area = DESARROLLO; piso = 4; break;
-            case 5: area = MERCADOTECNIA; piso = 4; break;
-            case 6: area = DIRECCION; piso = 5; break;
-        }
-        return area;
+ * Método que pide al usuario que ingrese el área en la que trabaja, la retorna para el enum y además le asigna un piso.
+ * @return el área de trabajo seleccionada por el usuario.
+ */
+private AreaDeTrabajo solicitaArea() {
+    int seleccion;
+    AreaDeTrabajo area = null; // Inicializamos area
+    // Mostrar opciones al usuario y obtener la selección
+    seleccion = MetodosGet.getInt(
+        "Selecciona el área en la que trabaja:\n" +
+        "1. Atención a clientes\n" +
+        "2. Recursos humanos\n" +
+        "3. Contabilidad\n" +
+        "4. Desarrollo\n" +
+        "5. Mercadotecnia\n" +
+        "6. Dirección", 
+        "Debe ingresar un valor del 1 al 6", 1, 6);
+
+    switch (seleccion) {
+        case 1: 
+            area = AreaDeTrabajo.ATENCION_A_CLIENTES; 
+            piso = 1; 
+            break;
+        case 2: 
+            area = AreaDeTrabajo.RECURSOS_HUMANOS; 
+            piso = 2; 
+            break;
+        case 3: 
+            area = AreaDeTrabajo.CONTABILIDAD; 
+            piso = 3; 
+            break;
+        case 4: 
+            area = AreaDeTrabajo.DESARROLLO; 
+            piso = 4; 
+            break;
+        case 5: 
+            area = AreaDeTrabajo.MERCADOTECNIA; 
+            piso = 4; 
+            break;
+        case 6: 
+            area = AreaDeTrabajo.DIRECCION; 
+            piso = 5; 
+            break;
+        default:
+            throw new IllegalArgumentException("Selección inválida");
     }
+
+    // Devolver el área seleccionada
+    return area;
+}
+
 }
