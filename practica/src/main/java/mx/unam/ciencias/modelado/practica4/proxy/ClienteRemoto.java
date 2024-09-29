@@ -21,7 +21,7 @@ public class ClienteRemoto{
      */
     public static void main(String[] args){
         try{
-            ImpresoraInterface servidor = (ImpresoraInterface) Naming.lookup("rmi://192.168.1.19/ImpresoraServidor");
+            ImpresoraInterface servidor = (ImpresoraInterface) Naming.lookup("rmi://localhost/ImpresoraServidor");
 
             ImpresoraProxy proxy = new ImpresoraProxy(servidor);
 
