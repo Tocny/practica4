@@ -25,8 +25,23 @@ public class ImpresoraProxy implements ImpresoraInterface{
      * @throws RemoteException en caso de error con el servidor.
      */
     @Override public void imprimir(Empleado empleado, Documento documento) throws RemoteException{
-        System.out.println("Solicitud enviada para imprimir el documento: " + documento.getNombreDocumento());
+        if(gestionarPermisos(empleado, documento) == true){
+            System.out.println("Solicitud enviada para imprimir el documento: " + documento.getNombreDocumento());
+        } else{
+            System.out.println(empleado.getNombre() + ", usted no puede imprimir a color.");
+        }
+
         servidor.imprimir(empleado, documento);
+    }
+
+    /**
+     * Método que sobrecarga la gestion de permisos al de los del servidor.
+     * @param empleado una instancia de empleado.
+     * @param documento una instancia de documento.
+     * @throws RemoteException en caso de errores con el server remoto.
+     */
+    @Override public boolean gestionarPermisos(Empleado empleado, Documento documento) throws RemoteException{
+        return servidor.gestionarPermisos(empleado, documento);
     }
 
 }
