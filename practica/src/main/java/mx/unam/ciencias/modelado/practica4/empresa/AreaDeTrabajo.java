@@ -7,5 +7,5 @@ public enum AreaDeTrabajo{
     CONTABILIDAD,
     DESARROLLO,
     MERCADOTECNIA,
-    DIRECCION
+    DIRECCION;
 }
