@@ -43,9 +43,13 @@ public class ClienteRemoto{
 
             System.exit(0);
 
-        } catch (Exception e){
-            System.err.println("Comunicación con el servidor interrumpida.");
+        } catch (RemoteException e){
+            System.err.println("\nError de comunucación remota: Comunicación interrumpida.");
             System.err.println(e.getMessage());
+            
+        } catch (Exception e){
+            System.err.println("\nError inesperado.");
+            System.err.println(e.getMessage());  
         }
     }
 }
