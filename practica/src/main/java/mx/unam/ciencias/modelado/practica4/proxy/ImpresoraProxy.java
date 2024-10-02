@@ -16,6 +16,7 @@ public class ImpresoraProxy implements ImpresoraInterface{
      */
     public ImpresoraProxy(ImpresoraInterface servidor){
         this.servidor = servidor;
+        System.out.println("Conexión con el servidor ctOS establecida. Ingrese los documentos que desee imprimir.");
     }
 
     /**
