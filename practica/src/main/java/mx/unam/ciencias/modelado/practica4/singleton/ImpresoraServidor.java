@@ -23,7 +23,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
     /**Cola para las impresiones. */
     private Queue<Documento> impresiones;
     /**Limite de impresiones que se pueden acumular en la cola. */
-    private static final int MAXIMO_COLA = 3;
+    private static final int MAXIMO_COLA = 2;
 
     /**
      * Constructor de la clase inicializa la cola de impresiones.
@@ -63,6 +63,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
         //Si se revasa el máximo, se hacen las impresiones y se hace un shut down al programa.
         if(impresiones.size() >= MAXIMO_COLA){
             realizaImpresiones();
+            System.exit(0);
         }
         
     }
@@ -106,7 +107,7 @@ public class ImpresoraServidor extends UnicastRemoteObject implements ImpresoraI
             System.setProperty("java.rmi.server.hostname", "localhost");
             LocateRegistry.createRegistry(1099);
             Naming.rebind("rmi://localhost/ImpresoraServidor", getInstancia());
-            System.out.println("Servidor registrado");
+            System.out.println("Servidor de ctOS registrado. Esperando solicitudes de impresión.");
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

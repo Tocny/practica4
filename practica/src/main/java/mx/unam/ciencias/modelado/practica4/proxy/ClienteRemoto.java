@@ -1,7 +1,6 @@
 package mx.unam.ciencias.modelado.practica4.proxy;
 
 import mx.unam.ciencias.modelado.practica4.empresa.*;
-import mx.unam.ciencias.modelado.practica4.simulacion.*;
 import java.rmi.RemoteException;
 import java.rmi.Naming;
 
@@ -16,24 +15,34 @@ public class ClienteRemoto{
      * Hace las siguientes cosas:
      * 1. Busca la conexión con el servidor remoto mediante la ip, ojo que el servidor debe estár prendido para ello.
      * 2. Crea la instancia de proxy que se usará para mandar solicitudes al servidor.
-     * 3. Pide datos al empleado, así como los datos del documento que desea imprimir, puede imprimi indefinidamente.
+     * 3. Hace una simulación generica.
      * @param args un arreglo de argumentos.
      */
     public static void main(String[] args){
         try{
-            ImpresoraInterface servidor = (ImpresoraInterface) Naming.lookup("rmi://localhost/ImpresoraServidor");
+            // Busca la conexión con el servidor remoto (puedes ajustar la IP si se ejecuta desde otra máquina).
+            ImpresoraInterface servidor = (ImpresoraInterface) Naming.lookup("rmi://127.0.0.1/ImpresoraServidor");
 
+            // Crea la instancia del proxy para interactuar con el servidor.
             ImpresoraProxy proxy = new ImpresoraProxy(servidor);
 
-            MenuEmpleado menuEmpleado = new MenuEmpleado();
-            Empleado empleado = menuEmpleado.construyeEmpleado();
+            // Simulación: Creación de empleados
+            Empleado empleado1 = new Empleado("Juan Perez", "JUAP12345678", AreaDeTrabajo.DIRECCION, 5);
+            Empleado empleado2 = new Empleado("Maria Lopez", "MALP98765432", AreaDeTrabajo.MERCADOTECNIA, 4);
 
-            MenuDocumento menuDocumento = new MenuDocumento();
+            // Simulación: Creación de documentos
+            Documento documento1 = new Documento("Reporte de Ventas", "Contenido del reporte de ventas.", true);
+            Documento documento2 = new Documento("2do Reporte de Ventas OwO", "Segundo reporte de ventas.", false);
+            Documento documento3 = new Documento("Plan de Proyecto", "Contenido del plan del proyecto.", true);
 
-            while(true){
-                Documento documento = menuDocumento.construyeDocumento();
-                proxy.imprimir(empleado, documento);
-            }
+            // Imprimir documento 1
+            proxy.imprimir(empleado1, documento1);
+            proxy.imprimir(empleado1, documento2);
+            // Imprimir documento 2
+            proxy.imprimir(empleado2, documento3);
+
+            System.exit(0);
+
         } catch (Exception e){
             System.err.println(e.getMessage());
         }
